@@ -1,0 +1,7 @@
+select the title of all the songs by the artist named 'Queen'. select the name of all of the artists from the 'Pop' genre. 
+Add another query that will select the title of all the songs from the 'Pop' artists. 
+It should use IN on a nested subquery that's based on your previous query.
+
+SELECT title FROM SONGS WHERE artist= "Queen";
+SELECT name FROM artists WHERE genre= "Pop";
+SELECT title FROM songs WHERE artist IN (SELECT name FROM artists WHERE genre= "Pop");
