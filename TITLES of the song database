@@ -1,0 +1,5 @@
+SELECT that uses AND to show the titles of songs that are 'epic', and released after 1990, and less than 4 minutes long.
+
+SELECT title FROM songs;
+SELECT title FROM songs WHERE MOOD = "epic" OR released > 1990;
+SELECT title FROM songs WHERE MOOD = "epic" AND released>1990 AND duration < 240;
