@@ -1,0 +1,39 @@
+For this project I worked on data sets from a Furniture Store sales database. 
+
+SELECT COUNT(product) FROM sales;
+
+SELECT product, MAX(PRICE) FROM sales;
+
+SELECT SUM(PRICE) FROM sales;
+
+SELECT product, COUNT(product) as total_product_sale FROM sales GROUP BY product;
+
+SELECT country, COUNT(COUNTRY) as total_purchases FROM sales GROUP BY country;
+
+SELECT AVG(PRICE) FROM Sales;
+SELECT MAX(PRICE) FROM sales;
+SELECT MIN(PRICE) FROM sales;
+
+
+Ran SQL to check which country bought how many and which prodcuts. For couch and chair I needed to use HAVING statement because more than one country
+bought same products. 
+
+SELECT country,product, COUNT(product) from sales group by country HAVING product = "Couch";
+
+SELECT country,product, COUNT(product) AS Total_purchases from sales group by country HAVING product = "Chair";
+
+SELECT country, product, COUNT(product) AS Total_purchases FROM sales WHERE product="Bed";
+
+
+
+SELECT payment_type, COUNT(payment_type) FROM Sales GROUP by payment_type;
+
+
+Ran SQL to check most, somewhat and least popular products:
+
+SELECT Product, COUNT(product) as total_purchases,
+CASE WHEN Count(product) > 80 THEN "Most Popular"
+     WHEN Count(product) > 10 THEN "Somewhat Popular"
+ELSE "Least popular"
+END AS Popularity
+FROM sales GROUP by product;
