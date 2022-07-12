@@ -1,4 +1,4 @@
-For this project I worked on data sets from a Furniture Store sales database. 
+For this project I worked on data sets from a Furniture Store sales database.
 
 SELECT COUNT(product) FROM sales;
 
