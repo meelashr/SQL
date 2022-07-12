@@ -11,8 +11,19 @@ INSERT INTO FABRICINK VALUES (8, "SOCKS",30,"WHITE",4,14.99);
 INSERT INTO FABRICINK VALUES (9, "Sweater",12,"red",6,44.99);
 INSERT INTO FABRICINK VALUES (10, "botton sweater",30,"purpul",10,24.99);
 
+(Comments- Created a table named FABRICINK with six columns- ID, Name, Quantity, Color, size and price. Also inserted values in it.)
+
+
 SELECT * FROM FABRICINK;
+(Comment- Retrieved all the columns and rows from the table FABRICINK)
 
 SELECT * FROM FABRICINK WHERE PRICE >=25;
+(Comment- Retrieved all the columns and rows from the table FABRICINK where the price is greater than or equals to $25.)
+
+
 SELECT * FROM FABRICINK WHERE COLOR = "BLACK" AND SIZE >= 6;
+(Comment- Retrieved all the columns and rows from the table FABRICINK where the color is black and size is greater than or equals to 6.)
+
 SELECT * FROM FABRICINK WHERE PRICE >=25 AND SIZE = 7 AND QUANTITY = 30;
+(Comment- Retrieved all the columns and rows from the table FABRICINK where the price is greater than or equals to $25, size is 7 and quantity is 30.)
+
