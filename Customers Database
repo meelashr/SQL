@@ -1,0 +1,26 @@
+Worked with customers database which contains sales data by month.
+
+Analytics Questions
+
+How many orders were placed in January?
+SELECT Count(orderID) From BIT_DB.JanSales
+Comment- Used the count clause to find out how many orders were placed in January. 
+
+How many of those orders were for an iPhone?
+SELECT Count(orderID) From BIT_DB.JanSales WHERE Product="Iphone"
+
+Select the customer account numbers for all the orders that were placed in February.
+SELECT acctnum FROM BIT_DB.customers acc
+INNER JOIN BIT_DB.FebSales sales
+ON acc.order_id= sales.orderID
+Comment- Because the account number is in different table(customer) used inner join to join two tables. 
+         We only need account number of those coustomers who have placed order in Feb, so we used inner join to get avoid getting null values.)
+         
+Which product was the cheapest one sold in January, and what was the price?
+SELECT distinct Product, MIN(price) FROM BIT_DB.JanSales Jan 
+GROUP BY Product,Price
+ORDER BY PRICE ASC LIMIT 1
+Comment- Using 'SELECT distinct' will remove duplicate rows from results. 
+         The MIN() command will allow to select the smallest value from the price column.
+         
+         
