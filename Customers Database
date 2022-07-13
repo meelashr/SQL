@@ -65,7 +65,6 @@ Revenue calculated using the number of products sold and the price of the produc
 
 
 
-
 --How many customers ordered more than 2 products at a time in February, 
 --and what was the average amount spent for those customers?
 
@@ -110,5 +109,38 @@ Comment- Asked SQL to look for products with headphones on it and used SUM funct
 
 
 
+
+
+What was the average amount spent per account in February?
+
+SELECT sum(quantity*price)/count(cust.acctnum)
+FROM BIT_DB.FebSales Feb
+LEFT JOIN BIT_DB.customers cust
+ON FEB.orderid=cust.order_id
+
+Comment- to find average amount fisrt figured sum total of price spent and divided it by total number of account
+
+
+What was the average quantity of products purchased per account in February?
+
+
+SELECT sum(quantity)/count(cust.acctnum)
+FROM BIT_DB.FebSales Feb
+LEFT JOIN BIT_DB.customers cust
+ON FEB.orderid=cust.order_id
+
+Comment- Used the equation (Total quanity divided by total accout number) to find average quantity. 
+
+
+
+Which product brought in the most revenue in January and how much revenue did it bring in total?
+
+
+SELECT Product, SUM(Quantity*Price) AS Revenue FROM BIT_DB.JanSales
+GROUP BY Product 
+ORDER BY SUM(Quantity*Price) Desc LIMIT 1 
+
+Comment- Revenue = quantity of the prodcut multiplied by price. Ask SQL to group the rows by prodcut
+         to find the product with most revenue ask SQL to order by descending order and limit only one result which will show the highest only. 
          
          
