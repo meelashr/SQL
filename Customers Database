@@ -2,25 +2,113 @@ Worked with customers database which contains sales data by month.
 
 Analytics Questions
 
-How many orders were placed in January?
-SELECT Count(orderID) From BIT_DB.JanSales
+--How many orders were placed in January?
+
+SELECT Count(orderID) 
+From BIT_DB.JanSales
+
 Comment- Used the count clause to find out how many orders were placed in January. 
 
-How many of those orders were for an iPhone?
-SELECT Count(orderID) From BIT_DB.JanSales WHERE Product="Iphone"
 
-Select the customer account numbers for all the orders that were placed in February.
+
+--How many of those orders were for an iPhone?
+
+SELECT Count(orderID) 
+From BIT_DB.JanSales 
+WHERE Product="Iphone"
+
+Comment- Used "count" function to find out how many orders and used "where" ask sql to only count iphone.
+
+
+--Select the customer account numbers for all the orders that were placed in February.
+
 SELECT acctnum FROM BIT_DB.customers acc
 INNER JOIN BIT_DB.FebSales sales
 ON acc.order_id= sales.orderID
+
 Comment- Because the account number is in different table(customer) used inner join to join two tables. 
          We only need account number of those coustomers who have placed order in Feb, so we used inner join to get avoid getting null values.)
          
-Which product was the cheapest one sold in January, and what was the price?
-SELECT distinct Product, MIN(price) FROM BIT_DB.JanSales Jan 
+         
+         
+--Which product was the cheapest one sold in January, and what was the price?
+
+SELECT distinct Product, MIN(price) FROM BIT_DB.JanSales 
 GROUP BY Product,Price
 ORDER BY PRICE ASC LIMIT 1
 Comment- Using 'SELECT distinct' will remove duplicate rows from results. 
          The MIN() command will allow to select the smallest value from the price column.
+         Order by 
+         
+         
+         
+--What is the total revenue for each product sold in January?
+
+SELECT Product, SUM(Quantity)*price AS REVENUE 
+FROM BIT_DB.JanSales 
+GROUP BY product 
+
+Comment-(Revenue calculated using the number of products sold and the price of the products).
+
+
+
+--Which products were sold in February at 548 Lincoln St, Seattle, WA 98101, 
+how many of each were sold, and what was the total revenue?
+
+SELECT product,SUM(quantity),SUM(quantity)*price AS Revenue 
+FROM BIT_DB.FebSales 
+WHERE Location = "548 Lincoln St, Seattle, WA 98101"
+GROUP BY Product;
+
+Comment-Used Sum(quanity) to find how many of each product were sold, and 
+Revenue calculated using the number of products sold and the price of the products.
+
+
+
+
+--How many customers ordered more than 2 products at a time in February, 
+--and what was the average amount spent for those customers?
+
+SELECT count(cust.acctnum), AVG (Quantity*Price) FROM BIT_DB.FebSales Feb
+LEFT JOIN BIT_DB.customers cust
+ON Feb.order_ID=cust.order_id
+WHERE feb.Quantity>2
+
+
+
+
+
+--List all the products sold in Los Angeles in February, and include how many of each were sold.
+
+SELECT Product, SUM(Quantity) FROM BIT_DB.Febsales
+WHERE Location like '%los Angeles%'
+GROUP BY Product
+
+Comment- used '%los Angeles%' to sort the location so that SQL will search for every location within los Angeles. 
+
+
+
+Which locations in New York received at least 3 orders in January, and how many orders did they each receive? 
+
+SELECT distinct location, count(orderID)
+FROM BIT_DB.JanSales
+WHERE location LIKE '%NY%'
+GROUP BY location
+HAVING count(orderID)>2
+
+Comment- Used distinct so that it only returns distint location and no duplicates. Then we counted order id within Newyork, grouped by statement to group 
+rows by location which has at least 3 or more orders. 
+
+
+--How many of each type of headphone were sold in February?
+
+SELECT Product, SUM(Quantity) As Quanitity FROM BIT_DB.febsales 
+WHERE Product like '%Headphones'
+GROUP BY Product 
+
+Comment- Asked SQL to look for products with headphones on it and used SUM function to count how many were sold and asked to group the row by product. 
+
+
+
          
          
