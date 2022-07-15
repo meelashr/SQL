@@ -1,0 +1,32 @@
+# For this project, I downloaded Data Scientist salary data from Kaggle.
+# Then I created a table to insert salary data into.
+# Finally, I performed analytics on the data using SQL. 
+
+# Creating Table
+CREATE TABLE BIT_DB.ds_salaries
+(id integer PRIMARY KEY,
+work_year integer,
+experience_level text,
+employment_type text,
+job_title text,
+salary integer,
+salary_currency text,
+salary_in_usd integer,
+employee_residence text,
+remote_ratio integer,
+company_location text,
+company_size text)
+
+#Then I inserted the Salary Data .csv into the table.
+
+#Next, I explored the data using the following SQL. 
+
+#First I looked for which job posiiotn was making the highest salary.
+
+SELECT job_title, MAX(Salary_in_usd) FROM BIT_DB.ds_salaries 
+Group By job_title
+ORDER by salary_in_usd desc LIMIT 1 
+
+#Then I determeind the average salaries based on the job position.
+--SELECT Job_title, AVG(Salary_in_usd) FROM BIT_DB.ds_salaries 
+--Group by Job_title
